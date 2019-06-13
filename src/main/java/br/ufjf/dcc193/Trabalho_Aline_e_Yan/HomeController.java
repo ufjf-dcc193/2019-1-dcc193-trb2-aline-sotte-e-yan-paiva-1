@@ -14,7 +14,5 @@ public class HomeController {
     public String index(){
         return "<h1> Bem Vindo</h1>";
     }
-
-
     
 }
