@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliação de trabalhos - Aline e Yan</title>
+</head>
+<body>
+    <form th:action="@{login.html}" method="post">
+        <label>Email: <input type="text" name="email"></label>
+        <label>senha: <input type="password" name="senha"></label>
+       
+        <input type="submit" />
+    </form>
+    <a th:href="@{./novoAvaliador.html}">Criar Avaliador</a>    
+    <a th:href="@{./novoTrabalho.html}">Criar Trabalho</a> 
+</body>
+</html>
