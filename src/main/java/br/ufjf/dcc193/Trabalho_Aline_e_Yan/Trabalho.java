@@ -1,8 +1,11 @@
 package br.ufjf.dcc193.Trabalho_Aline_e_Yan;
 
+import java.util.List;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -25,6 +28,9 @@ public class Trabalho {
 
     @NotBlank
     private String areaConhecimento;
+
+    @OneToMany(mappedBy = "idTrabalho")
+    private List<Revisao> revisao;
 
     public Trabalho(@NotBlank String titulo, @NotBlank String descricaoTextual, @NotBlank String url,
             @NotBlank String areaConhecimento) {

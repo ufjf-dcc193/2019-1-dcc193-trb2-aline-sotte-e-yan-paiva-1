@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 /**
  * Revisao
  */
@@ -15,9 +16,11 @@ public class Revisao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long idAvaliador;
+    @ManyToOne
+    private Avaliador idAvaliador;
 
-    private Long idTrabalho;
+    @ManyToOne
+    private Trabalho idTrabalho;
 
     @Min(0)
     @Max(100)
@@ -46,19 +49,19 @@ public class Revisao {
         this.id = id;
     }
 
-    public Long getIdAvaliador() {
+    public Avaliador getIdAvaliador() {
         return idAvaliador;
     }
 
-    public void setIdAvaliador(Long idAvaliador) {
+    public void setIdAvaliador(Avaliador idAvaliador) {
         this.idAvaliador = idAvaliador;
     }
 
-    public Long getIdTrabalho() {
+    public Trabalho getIdTrabalho() {
         return idTrabalho;
     }
 
-    public void setIdTrabalho(Long idTrabalho) {
+    public void setIdTrabalho(Trabalho idTrabalho) {
         this.idTrabalho = idTrabalho;
     }
 

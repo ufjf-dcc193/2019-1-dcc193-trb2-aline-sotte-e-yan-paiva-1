@@ -1,9 +1,12 @@
 package br.ufjf.dcc193.Trabalho_Aline_e_Yan;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -23,6 +26,9 @@ public class Avaliador {
    
    @NotBlank
    private String codigoAcesso;
+
+   @OneToMany(mappedBy ="idAvaliador")
+   private List<Revisao> revisao;
 
    
     public Avaliador (){}
@@ -77,6 +83,7 @@ public class Avaliador {
    public void setNomeCompleto(String nomeCompleto) {
        this.nomeCompleto = nomeCompleto;
    }
+
 
     @Override
     public String toString() {
