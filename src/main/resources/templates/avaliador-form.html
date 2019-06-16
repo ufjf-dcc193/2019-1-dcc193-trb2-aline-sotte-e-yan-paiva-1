@@ -6,7 +6,7 @@
 </head>
 <body>
    <html>Avaliador: Nova</html>
-   <form th:action="@{nova.html}" th:object="${avaliador}" method="POST">
+   <form th:action="@{novoavaliador.html}" th:object="${avaliador}" method="POST">
        <label>Nome: <input type="text" th:field="*{nomeCompleto}"/></label>
        <strong th:if="${#fields.hasErrors('nomeCompleto')}" th:errors="*{nomeCompleto}"></strong>
        <label>E-mail: <input type="text" th:field="*{email}"/></label>
