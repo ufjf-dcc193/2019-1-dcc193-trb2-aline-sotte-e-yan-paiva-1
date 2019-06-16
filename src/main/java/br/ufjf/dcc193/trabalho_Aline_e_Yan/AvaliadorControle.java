@@ -29,7 +29,7 @@ public class AvaliadorControle {
         return "avaliador";
     }
 
-    @GetMapping("/nova.html")
+    @GetMapping("/novoavaliador.html")
     public ModelAndView criar() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-form");
@@ -38,7 +38,7 @@ public class AvaliadorControle {
         return mv;
     }
 
-    @PostMapping("/nova.html")
+    @PostMapping("/novoavaliador.html")
     public ModelAndView criar(@Valid Avaliador avaliador, BindingResult binding) {
         ModelAndView mv = new ModelAndView();
         if (binding.hasErrors()) {
