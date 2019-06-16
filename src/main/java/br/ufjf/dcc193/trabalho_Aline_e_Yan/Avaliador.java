@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "tb_avaliador")
 public class Avaliador {
 
    @Id
@@ -25,7 +27,6 @@ public class Avaliador {
    @NotBlank (message = "O e-mail é obrigatório")
    private String email; 
    
-   @NotBlank
    private String codigoAcesso;
 
    @OneToMany(mappedBy ="idAvaliador", cascade = CascadeType.ALL)
