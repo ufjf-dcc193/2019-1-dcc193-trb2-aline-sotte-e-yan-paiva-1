@@ -18,11 +18,11 @@ public class Avaliador {
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long Id;
     
-   @NotBlank
+   @NotBlank(message = "O nome é obrigatório")
    private String nomeCompleto;
    
    @Email
-   @NotBlank
+   @NotBlank (message = "O e-mail é obrigatório")
    private String email; 
    
    @NotBlank
