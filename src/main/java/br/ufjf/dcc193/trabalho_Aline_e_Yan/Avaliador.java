@@ -2,6 +2,7 @@ package br.ufjf.dcc193.trabalho_Aline_e_Yan;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class Avaliador {
    @NotBlank
    private String codigoAcesso;
 
-   @OneToMany(mappedBy ="idAvaliador")
+   @OneToMany(mappedBy ="idAvaliador", cascade = CascadeType.ALL)
    private List<Revisao> revisao;
 
    

@@ -2,6 +2,7 @@ package br.ufjf.dcc193.trabalho_Aline_e_Yan;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +32,7 @@ public class Trabalho {
     @NotBlank
     private String areaConhecimento;
 
-    @OneToMany(mappedBy = "idTrabalho")
+    @OneToMany(mappedBy = "idTrabalho", cascade = CascadeType.ALL)
     private List<Revisao> revisao;
 
     public Trabalho(@NotBlank String titulo, @NotBlank String descricaoTextual, @NotBlank String url,
