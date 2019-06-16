@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Fri Jun 14 23:29:06 BRT 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016b-58f7-8b99-000008cd7108 
-on database directory /home/yan/Documentos/web2/Trabalho_Aline_e_Yan/test with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@512ddf17 
-Loaded from file:/home/yan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+Sat Jun 15 22:47:27 BRT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016b-5df7-c369-00000ab6b890 
+on database directory memory:/home/alinesotte/2019-1-dcc193-trb2-aline-sotte-e-yan-paiva-1/testdb with class loader sun.misc.Launcher$AppClassLoader@764c12b6 
+Loaded from file:/home/alinesotte/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
-java.runtime.version=11.0.2+9-LTS
-user.dir=/home/yan/Documentos/web2/Trabalho_Aline_e_Yan
+java.runtime.version=1.8.0_201-b09
+user.dir=/home/alinesotte/2019-1-dcc193-trb2-aline-sotte-e-yan-paiva-1
 os.name=Linux
 os.arch=amd64
-os.version=4.15.0-47-generic
+os.version=4.15.0-20-generic
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
