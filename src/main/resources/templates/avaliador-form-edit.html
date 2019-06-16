@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <title>Avaliador: Nova</title>
+</head>
+<body>
+   <html>Avaliador: Nova</html>
+   <form th:action="@{../editar/{id}(id=*{id})}" th:object="${avaliador}" method="POST">
+       <input type="hidden" th:field="*{id}"/>
+       <label>Nome: <input type="text" th:field="*{nomeCompleto}"/></label>
+       <strong th:if="${#fields.hasErrors('nomeCompleto')}" th:errors="*{nomeCompleto}"></strong>
+       <label>Email: <input type="text" th:field="*{email}"/></label>
+       <strong th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></strong>
+       <input type="submit"/>
+       <input type="reset"/>
+   </form>
+</body>
+</html>

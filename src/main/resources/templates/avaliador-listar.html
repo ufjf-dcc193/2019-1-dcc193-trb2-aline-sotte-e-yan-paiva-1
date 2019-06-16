@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <title>Avaliador: Nova</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr> <th>id</th> <th>Nome</th> <th>Email</th> </tr>
+        </thead>
+        <tbody>
+            <tr th:each="avaliador: ${aval}" th:object=${avaliador}>
+                <td th:text=*{id}></td>
+                <td th:text=*{nomeCompleto}></td>
+                <td th:text=*{email}></td>
+            </tr>
+        </tbody>
+    </table>
+ </body>
+ 
+</html>
