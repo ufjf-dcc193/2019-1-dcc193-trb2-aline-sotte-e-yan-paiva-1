@@ -1,6 +1,7 @@
 package br.ufjf.dcc193.trabalho_Aline_e_Yan;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -32,9 +33,9 @@ public class AvaliadorControle {
     @GetMapping("/novoavaliador.html")
     public ModelAndView criar() {
         ModelAndView mv = new ModelAndView();
+        String codigoAcesso = String.valueOf(Long.toHexString(new Random().nextLong()));
         mv.setViewName("avaliador-form");
-        mv.addObject("avaliador", new Avaliador("nome", "email"));
-
+        mv.addObject("avaliador", new Avaliador("nome", "email", codigoAcesso));
         return mv;
     }
 

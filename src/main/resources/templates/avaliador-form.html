@@ -11,6 +11,8 @@
        <strong th:if="${#fields.hasErrors('nomeCompleto')}" th:errors="*{nomeCompleto}"></strong>
        <label>E-mail: <input type="text" th:field="*{email}"/></label>
        <strong th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></strong>
+       <label>Senha: <input type="text" th:field="*{codigoAcesso}" readonly/></label>
+       <strong th:if="${#fields.hasErrors('codigoAcesso')}" th:errors="*{codigoAcesso}"></strong>
        <input type="submit"/>
        <input type="reset"/>
    </form>

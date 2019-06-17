@@ -34,9 +34,10 @@ public class Avaliador {
     public Avaliador (){}
 
 
-    public Avaliador(String nomeCompleto, String email){
+    public Avaliador(String nomeCompleto, String email, String codigoAcesso){
         this.email=email;
         this.nomeCompleto=nomeCompleto;
+        this.codigoAcesso = codigoAcesso;
     }
    /**
     * @return the id

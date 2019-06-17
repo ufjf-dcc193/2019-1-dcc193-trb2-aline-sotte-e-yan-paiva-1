@@ -16,7 +16,6 @@ public class HomeController {
     AvaliadorRepositorio avdRepo;
     @RequestMapping("/")
     @ResponseBody
-
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");
