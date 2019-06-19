@@ -13,6 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface AreaDeConhecimentoRepositorio 
     extends JpaRepository<AreaDeConhecimento, Long>{ 
     List<AreaDeConhecimento> findByIdAvaliador(Avaliador idAvaliador);
-    List<AreaDeConhecimento> get
     List<AreaDeConhecimento> findByIdTrabalho(Trabalho idTrabalho);
 }
