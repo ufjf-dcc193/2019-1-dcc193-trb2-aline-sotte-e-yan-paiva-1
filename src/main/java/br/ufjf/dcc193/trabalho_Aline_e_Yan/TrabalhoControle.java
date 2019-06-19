@@ -31,6 +31,8 @@ public class TrabalhoControle {
     private TrabalhoRepositorio trabRepositorio;
     @Autowired
     private RevisaoRepositorio revRepositorio;
+    @Autowired
+    private AvaliadorRepositorio avalRepositorio;
 
     @RequestMapping("/novoTrabalho.html")
     public ModelAndView trabalhoJanela(long id) {
@@ -81,7 +83,19 @@ public class TrabalhoControle {
         mv.addObject("opcoes", titulo.entrySet());
 
         return mv;
-
+    }
+    @RequestMapping("/avaliar-trabalhos.html")
+    public ModelAndView avaliar(long id, long idTrab) {
+        ModelAndView mv = new ModelAndView();
+        Revisao aux = new Revisao((float)0.0, "descreva sua avaliação", "a fazer");
+        aux.setIdAvaliador(avalRepositorio.getOne(id));
+        aux.setIdTrabalho(trabRepositorio.getOne(idTrab));
+        mv.setViewName("avaliar-form");
+        mv.addObject("id", id);
+        mv.addObject("idTrab", idTrab);        
+        mv.addObject("trabalho", trabRepositorio.getOne(idTrab));
+        mv.addObject("novaAvaliacao", aux);
+        return mv;
     }
 
 }

@@ -31,12 +31,11 @@ public class RevisaoControle {
     private TrabalhoRepositorio trabRepositorio;
 
     @RequestMapping("/revisar.html")
-    public ModelAndView revisar(long id) {
+    public ModelAndView revisar(long id, long idTrab) {
         ModelAndView mv = new ModelAndView();
         List<Trabalho> trabalhos = trabRepositorio.findAll();
         mv.setViewName("trabalho-form");
         mv.addObject("id", id);
-        
         Trabalho aux = new Trabalho("Titulo", "Descrição textual", "Link para o site", new AreaDeConhecimento());
         aux.getAreaConhecimento().setTitulo(0);
         mv.addObject("novoTrabalho",aux);
@@ -44,7 +43,6 @@ public class RevisaoControle {
         mv.addObject("opcoes", titulo.entrySet());
         return mv;
     }
-
     @PostMapping("/trabalho-form.html")
     public ModelAndView criar(long id, @Valid Trabalho novoTrabalho, BindingResult binding) {
         ModelAndView mv = new ModelAndView();
@@ -58,7 +56,6 @@ public class RevisaoControle {
         mv.addObject("trabalhos", trabalhos);
         mv.addObject("opcoes", titulo.entrySet());
         return mv;
-
     }
 
 }

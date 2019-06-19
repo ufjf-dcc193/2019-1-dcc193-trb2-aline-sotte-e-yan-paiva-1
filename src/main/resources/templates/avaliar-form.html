@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Trabalho</title>
+</head>
+
+<body>
+   <html>Trabalho
+   <table border="1">
+      <thead>
+         <tr>
+            <th>id</th>
+            <th>Titulo</th>
+            <th>Descrição</th>
+            <th>URL</th>
+            <th>Area de Conhecimento</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr th:object=${trabalho}>
+            <td th:text=*{id}></td>
+            <td th:text=*{Titulo}></td>
+            <td th:text=*{descricaoTextual}></td>
+            <td th:text=*{url}></td>
+            <td> <label>Area de Conhecimento: <select name="areaDeConhecimento">
+                     <option th:each="opcao: ${opcoes}" th:object="${opcao}" th:text="*{key+': '+value}"
+                         disabled></option>
+                  </select></label>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+   <table border="1">
+      <thead>
+         <tr>
+            <th>id</th>
+            <th>idAvaliador</th>
+            <th>idTrabalho</th>
+            <th>Nota </th>
+            <th>descricao Opcional</th>
+            <th>Status</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr th:each="revisao: ${revisoes}" th:object= "${revisao}">
+            <td th:text=*{id}></td>
+            <td th:text=*{idAvaliador}></td>
+            <td th:text=*{idTrabalho}></td>
+            <td th:text=*{nota}></td>
+            <td th:text=*{descricaoOpcional}></td>
+            <td th:text=*{status}> </td>   
+            <form th:action="@{revisar-trabalho.html(id=${param.id},idTrab=${param.idTrab})}" method="POST">
+               <td>
+                  <span th:if="*{idAvaliador==${param.id}}"><input type="submit" name="btnEditAvaliar" value="Editar"/> </span>
+                  <span th:unless="*{idAvaliador==${param.id}}"><input type="submit" name="btnEditAvaliar" value="Editar" disabled/></span>
+               </td>
+            </form>
+         </tr>
+      </tbody>
+   </table>     
+</form>
+</body>
+   <form th:action="@{avaliar-trabalho.html(id=${param.id},idTrab=${param.idTrab})}" th:object="${novaAvaliacao}" method="POST">
+      <label><input type="text" th:field="*{nota}" /></label>
+      <strong th:if="${#fields.hasErrors('nota')}" th:errors="*{nota}"></strong>
+      <label><input type="text" th:field="*{descricaoOpcional}"/></label>
+      <strong th:if="${#fields.hasErrors('descricaoOpcional')}" th:errors="*{descricaoOpcional}"></strong>
+      <td> <label>Status: <select name="status">
+         <option >a fazer</option>
+         <option >avaliado</option>
+         <option >impedido</option>
+         <option >validado</option>
+         <option >invalidado</option>            
+      </select></label>
+      </td>
+      <input type="submit"/>
+</form>
+</html>
