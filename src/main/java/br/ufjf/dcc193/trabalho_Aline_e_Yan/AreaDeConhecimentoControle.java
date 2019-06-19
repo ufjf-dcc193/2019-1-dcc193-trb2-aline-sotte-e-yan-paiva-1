@@ -1,6 +1,8 @@
 package br.ufjf.dcc193.trabalho_Aline_e_Yan;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.validation.Valid;
@@ -18,6 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/area-de-conhecimento")
 public class AreaDeConhecimentoControle {
+    final Map<Integer, String> titulo = new HashMap<Integer, String>(){{
+        put(0,"Selecione 1 das opções");
+        put(1,"Ciencias Humanas");
+        put(2,"Ciencias Exatas");
+        put(3,"Ciencias Biologicas");
+        put(4,"Egenharias");
+        put(5,"Ciencias Sociais");            }
+        };
 
     @Autowired
     private AvaliadorRepositorio avalRepositorio;
@@ -31,8 +41,9 @@ public class AreaDeConhecimentoControle {
            //// findByIdAvaliador(avalRepositorio.getOne(id));
         mv.setViewName("area-de-conhecimento-form");
         mv.addObject("id", id);
-        mv.addObject("novaArea", new AreaDeConhecimento("Titulo", "Descrição textual"));
+        mv.addObject("novaArea", new AreaDeConhecimento(0, "Descrição textual"));
         mv.addObject("areas", areas);
+        mv.addObject("opcoes", titulo.entrySet());
         return mv;
     }
     @PostMapping("/area-de-conhecimento-form.html")
@@ -40,7 +51,7 @@ public class AreaDeConhecimentoControle {
         BindingResult binding) {
         ModelAndView mv = new ModelAndView();
         if (!binding.hasErrors()) {
-            mv.addObject("novaArea", new AreaDeConhecimento("Titulo", "Descrição textual"));    
+            mv.addObject("novaArea", new AreaDeConhecimento(0, "Descrição textual"));    
         }else{
             mv.addObject("novaArea", novaArea);
         }
@@ -51,6 +62,7 @@ public class AreaDeConhecimentoControle {
         mv.setViewName("area-de-conhecimento-form");
         mv.addObject("id", id);
         mv.addObject("area", areas);
+        mv.addObject("opcoes", titulo.entrySet());
         
         return mv;
 

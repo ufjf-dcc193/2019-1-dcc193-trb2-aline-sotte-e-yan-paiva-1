@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -28,19 +29,18 @@ public class Trabalho {
 
     @NotBlank
     private String url;
-
-    @NotBlank
-    private String areaConhecimento;
+    @ManyToOne
+    private AreaDeConhecimento idAreaDeConhecimento;
 
     @OneToMany(mappedBy = "idTrabalho", cascade = CascadeType.ALL)
     private List<Revisao> revisao;
 
     public Trabalho(@NotBlank String titulo, @NotBlank String descricaoTextual, @NotBlank String url,
-            @NotBlank String areaConhecimento) {
+            @NotBlank AreaDeConhecimento areaConhecimento) {
         this.titulo = titulo;
         this.descricaoTextual = descricaoTextual;
         this.url = url;
-        this.areaConhecimento = areaConhecimento;
+        this.idAreaDeConhecimento = areaConhecimento;
     }
 
     public Trabalho() {
@@ -78,17 +78,17 @@ public class Trabalho {
         this.url = url;
     }
 
-    public String getAreaConhecimento() {
-        return areaConhecimento;
+    public AreaDeConhecimento getAreaConhecimento() {
+        return idAreaDeConhecimento;
     }
 
-    public void setAreaConhecimento(String areaConhecimento) {
-        this.areaConhecimento = areaConhecimento;
+    public void setAreaConhecimento(AreaDeConhecimento areaConhecimento) {
+        this.idAreaDeConhecimento = areaConhecimento;
     }
 
     @Override
     public String toString() {
-        return "Trabalho [areaConhecimento=" + areaConhecimento + ", descricaoTextual=" + descricaoTextual + ", id="
+        return "Trabalho [areaConhecimento=" + idAreaDeConhecimento + ", descricaoTextual=" + descricaoTextual + ", id="
                 + id + ", titulo=" + titulo + ", url=" + url + "]";
     }
 }

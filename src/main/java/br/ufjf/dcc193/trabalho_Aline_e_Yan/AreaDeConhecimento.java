@@ -1,5 +1,6 @@
 package br.ufjf.dcc193.trabalho_Aline_e_Yan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -19,23 +22,27 @@ public class AreaDeConhecimento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
-    private String titulo;
+    @Min(0)
+    @Max(5)
+    private Integer titulo;
 
     @NotBlank
     private String descricaoTextual;
-    @OneToOne
-    private Trabalho idTrabalho;
+    @OneToMany(mappedBy ="idAreaDeConhecimento", cascade = CascadeType.ALL)
+    private List<Trabalho> idTrabalho;
     @ManyToOne
     private Avaliador idAvaliador;
     
-    public AreaDeConhecimento(@NotBlank String titulo,
+    public AreaDeConhecimento(@NotBlank Integer titulo,
      @NotBlank String descricaoTextual) {
+        this();
         this.titulo = titulo;
         this.descricaoTextual = descricaoTextual;
     }
 
     public AreaDeConhecimento() {
+        this.titulo = 0;
+        idTrabalho = new ArrayList<>();
     }
 
     public Long getId() {
@@ -46,12 +53,13 @@ public class AreaDeConhecimento {
         this.id = id;
     }
 
-    public String getTitulo() {
+    public Integer getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
+    public AreaDeConhecimento setTitulo(Integer titulo) {
         this.titulo = titulo;
+        return this;
     }
 
     public String getDescricaoTextual() {
@@ -67,11 +75,11 @@ public class AreaDeConhecimento {
         return "titulo=" + titulo + ", DescricaoTextual=" + descricaoTextual + ", id="+ id;
     }
 
-    public Trabalho getIdTrabalho() {
+    public List<Trabalho> getIdTrabalho() {
         return idTrabalho;
     }
 
-    public void setIdTrabalho(Trabalho idTrabalho) {
+    public void setIdTrabalho(List<Trabalho> idTrabalho) {
         this.idTrabalho = idTrabalho;
     }
 
