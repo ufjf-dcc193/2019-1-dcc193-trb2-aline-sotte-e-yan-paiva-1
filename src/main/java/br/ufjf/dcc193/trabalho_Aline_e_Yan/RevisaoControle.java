@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/Trabalho")
-public class TrabalhoControle {
+@RequestMapping("/Revisao")
+public class RevisaoControle {
     final Map<Integer, String> titulo = new HashMap<Integer, String>() {
         {
             put(0, "Selecione 1 das opções");
@@ -29,15 +29,14 @@ public class TrabalhoControle {
     };
     @Autowired
     private TrabalhoRepositorio trabRepositorio;
-    @Autowired
-    private RevisaoRepositorio revRepositorio;
 
-    @RequestMapping("/novoTrabalho.html")
-    public ModelAndView trabalhoJanela(long id) {
+    @RequestMapping("/revisar.html")
+    public ModelAndView revisar(long id) {
         ModelAndView mv = new ModelAndView();
         List<Trabalho> trabalhos = trabRepositorio.findAll();
         mv.setViewName("trabalho-form");
         mv.addObject("id", id);
+        
         Trabalho aux = new Trabalho("Titulo", "Descrição textual", "Link para o site", new AreaDeConhecimento());
         aux.getAreaConhecimento().setTitulo(0);
         mv.addObject("novoTrabalho",aux);
@@ -58,21 +57,6 @@ public class TrabalhoControle {
         mv.addObject("id", id);
         mv.addObject("trabalhos", trabalhos);
         mv.addObject("opcoes", titulo.entrySet());
-        return mv;
-
-    }
-
-    @PostMapping("/excluir-trabalhos.html")
-    public ModelAndView excluir(long id, long idTrabalho) {
-        ModelAndView mv = new ModelAndView();
-    //    revRepositorio.removeByIdTrabalho(idTrabalho);
-        trabRepositorio.deleteById(idTrabalho);
-        List<Trabalho> trabalhos = trabRepositorio.findAll();
-        mv.setViewName("trabalho-form");
-        mv.addObject("id", id);
-        mv.addObject("trabalhos", trabalhos);
-        mv.addObject("opcoes", titulo.entrySet());
-
         return mv;
 
     }

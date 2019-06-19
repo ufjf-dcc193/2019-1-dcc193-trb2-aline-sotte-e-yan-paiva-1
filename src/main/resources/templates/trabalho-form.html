@@ -18,24 +18,29 @@
             <th>Area de Conhecimento</th>
          </tr>
       </thead>
-      <tbody >
+      <tbody>
          <tr th:each="trabalho: ${trabalhos}" th:object=${trabalho}>
-            <form th:action="@{lista-trabalhos.html}" method="POST">
-               <td th:text=*{id}></td>
-               <td th:text=*{Titulo}></td>
-               <td th:text=*{descricaoTextual}></td>
-               <td th:text=*{url}></td>
-               <td> <label>Area de Conhecimento: <select name="areaDeConhecimento">
-                  <option th:each="opcao: ${opcoes}" th:object="${opcao}" th:text="*{key+': '+value}" th:selected="${novoTrabalho.getAreaConhecimento().getTitulo()}" disabled></option>
+            <td th:text=*{id}></td>
+            <td th:text=*{Titulo}></td>
+            <td th:text=*{descricaoTextual}></td>
+            <td th:text=*{url}></td>
+            <td> <label>Area de Conhecimento: <select name="areaDeConhecimento">
+                     <option th:each="opcao: ${opcoes}" th:object="${opcao}" th:text="*{key+': '+value}"
+                        th:selected="${novoTrabalho.getAreaConhecimento().getTitulo()}" disabled></option>
                   </select></label>
-               </td>
-               <td><input type="submit"/></td>
+            </td>
+            <form th:action="@{excluir-trabalhos.html(id=${param.id})&(idTrab=*{id})}" method="POST">
+               <td><input type="submit" name="btnExcluir" value="Excluir"/></td>
+            </form>
+
+            <form th:action="@{avaliar-trabalhos.html(id=${param.id})&(idTrab=*{id})}" method="POST">
+               <td><input type="submit" name="btnAvaliar" value="Avaliar"/></td>
             </form>
          </tr>
       </tbody>
    </table>
    <form th:action="@{trabalho-form.html(id=${param.id})}" th:object="${novoTrabalho}" method="POST">
-      <label><input type="text" th:field="*{titulo}"/></label>
+      <label><input type="text" th:field="*{titulo}" /></label>
       <strong th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></strong>
       <label><input type="text" th:field="*{descricaoTextual}"/></label>
       <strong th:if="${#fields.hasErrors('descricaoTextual')}" th:errors="*{descricaoTextual}"></strong>

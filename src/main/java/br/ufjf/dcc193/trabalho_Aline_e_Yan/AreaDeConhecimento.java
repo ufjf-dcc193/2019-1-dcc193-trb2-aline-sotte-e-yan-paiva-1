@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -57,9 +56,9 @@ public class AreaDeConhecimento {
         return titulo;
     }
 
-    public AreaDeConhecimento setTitulo(Integer titulo) {
+    public void setTitulo(Integer titulo) {
         this.titulo = titulo;
-        return this;
+      //  return this;
     }
 
     public String getDescricaoTextual() {
