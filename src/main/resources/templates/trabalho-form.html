@@ -26,14 +26,14 @@
             <td th:text=*{url}></td>
             <td> <label>Area de Conhecimento: <select name="areaDeConhecimento">
                      <option th:each="opcao: ${opcoes}" th:object="${opcao}" th:text="*{key+': '+value}"
-                        th:selected="${novoTrabalho.getAreaConhecimento().getTitulo()}" disabled></option>
+                         disabled></option>
                   </select></label>
             </td>
-            <form th:action="@{excluir-trabalhos.html(id=${param.id})&(idTrab=*{id})}" method="POST">
+            <form th:action="@{excluir-trabalhos.html(id=${param.id},idTrab=*{id})}" method="POST">
                <td><input type="submit" name="btnExcluir" value="Excluir"/></td>
             </form>
 
-            <form th:action="@{avaliar-trabalhos.html(id=${param.id})&(idTrab=*{id})}" method="POST">
+            <form th:action="@{avaliar-trabalhos.html(id=${param.id},idTrab=*{id})}" method="POST">
                <td><input type="submit" name="btnAvaliar" value="Avaliar"/></td>
             </form>
          </tr>

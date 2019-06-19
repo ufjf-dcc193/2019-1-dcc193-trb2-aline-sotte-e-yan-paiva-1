@@ -63,11 +63,18 @@ public class TrabalhoControle {
     }
 
     @PostMapping("/excluir-trabalhos.html")
-    public ModelAndView excluir(long id, long idTrabalho) {
+    public ModelAndView excluir(long id, long idTrab) {
         ModelAndView mv = new ModelAndView();
-    //    revRepositorio.removeByIdTrabalho(idTrabalho);
-        trabRepositorio.deleteById(idTrabalho);
+        for (Revisao var : revRepositorio.findByIdTrabalho(
+            trabRepositorio.getOne(idTrab))) {
+            revRepositorio.deleteById(var.getId());          
+        }
+      //  revRepositorio.removeByIdTrabalho(trabRepositorio.getOne(idTrabalho));
+        trabRepositorio.deleteById(idTrab);
         List<Trabalho> trabalhos = trabRepositorio.findAll();
+        Trabalho aux = new Trabalho("Titulo", "Descrição textual", "Link para o site", new AreaDeConhecimento());
+        aux.getAreaConhecimento().setTitulo(0);
+        mv.addObject("novoTrabalho",aux);
         mv.setViewName("trabalho-form");
         mv.addObject("id", id);
         mv.addObject("trabalhos", trabalhos);
