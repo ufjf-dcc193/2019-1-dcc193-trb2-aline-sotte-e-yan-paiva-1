@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
     @Autowired
     AvaliadorRepositorio avdRepo;
-    @RequestMapping("/")
+    @RequestMapping({"/", "/index.html"})
     @ResponseBody
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView();
@@ -25,11 +25,20 @@ public class HomeController {
     @PostMapping(value="/login.html")
     public ModelAndView login(String email, String senha){
             ModelAndView mv = new ModelAndView();
-            
             Avaliador avaliador = avdRepo.getOne(
                 avdRepo.getIdByEmailAndSenha(email, senha)); 
-            mv.setViewName("redirect:listar.html");
+            mv.addObject("usuario", avaliador);
+            mv.setViewName("home.html");
             return mv;
     }
+
+    @RequestMapping("/home.html")
+    public ModelAndView home(long id){
+        ModelAndView mv = new ModelAndView();
+        Avaliador avaliador = avdRepo.getOne(id); 
+        mv.addObject("usuario", avaliador);
+        mv.setViewName("home.html");
+        return mv;
+}
     
 }

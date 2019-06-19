@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliação de trabalhos - Aline e Yan</title>
+</head>
+<body>
+    <p>Bem vindo <span th:text="${usuario.getNomeCompleto()}">Seu Nome Aqui</span>!</p>
+    <p>id <span th:text="${usuario.getId()}">Seu Nome Aqui</span>!</p>
+
+    <a th:href="@{./avaliador/novoavaliador.html?id=${usuario.getId()}}">Editar Usuario</a>    
+    <a th:href="@{./novoTrabalho.html}">Criar Trabalho</a> 
+    <a th:href="@{./home.html(id=${usuario.getId()})}" >Criar Trabalho</a> 
+    
+    <a th:href="@{./index.html}">sair</a> 
+</body>
+</html>

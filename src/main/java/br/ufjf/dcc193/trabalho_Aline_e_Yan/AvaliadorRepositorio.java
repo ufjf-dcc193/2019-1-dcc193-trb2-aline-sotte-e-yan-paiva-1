@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AvaliadorRepositorio extends JpaRepository<Avaliador, Long>{
     
-    @Query("SELECT id FROM Avaliador a WHERE a.email =:email and a.codigoAcesso =:codigoAcesso")
+    @Query("SELECT a.id FROM Avaliador a WHERE a.email =:email and a.codigoAcesso =:codigoAcesso")
     Long getIdByEmailAndSenha(@Param("email") String email,
      @Param("codigoAcesso") String codigoAcesso);
-
 }

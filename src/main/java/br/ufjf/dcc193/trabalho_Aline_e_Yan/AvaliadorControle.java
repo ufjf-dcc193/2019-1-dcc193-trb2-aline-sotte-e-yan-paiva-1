@@ -44,8 +44,7 @@ public class AvaliadorControle {
         ModelAndView mv = new ModelAndView();
         if (binding.hasErrors()) {
 
-            mv.setViewName("redirect:listar.html");
-            avalRepositorio.save(avaliador);
+            mv.setViewName("avaliador-form");
             mv.addObject("avaliador", avaliador);
             return mv;
         }
@@ -61,11 +60,18 @@ public class AvaliadorControle {
         List<Avaliador> aval = avalRepositorio.findAll();
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-listar");
-        mv.addObject("avaliador", aval);
+        mv.addObject("avaliadores", aval);
         return mv;
     }
 
     @GetMapping("/editar/{id}")
+    public ModelAndView editar(@PathVariable Long id) {
+        ModelAndView mv = new ModelAndView();
+        Avaliador aval = avalRepositorio.getOne(id);
+        mv.setViewName("avaliador-form-edit");
+        mv.addObject("avaliadores", aval);
+        return mv;
+    }
     @PostMapping("/editar/{id}")
     public ModelAndView editar(@PathVariable Long id, @Valid Avaliador avaliador, BindingResult binding) {
         ModelAndView mv = new ModelAndView();
@@ -75,7 +81,8 @@ public class AvaliadorControle {
             return mv;
         }
         avalRepositorio.save(avaliador);
-        mv.setViewName("redirect:../listar.html");
+        mv.addObject("usuario", avaliador);
+        mv.setViewName("home.html");
         return mv;
     }
  

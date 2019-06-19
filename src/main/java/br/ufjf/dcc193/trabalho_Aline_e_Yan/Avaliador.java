@@ -1,5 +1,6 @@
 package br.ufjf.dcc193.trabalho_Aline_e_Yan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,11 +31,18 @@ public class Avaliador {
    @OneToMany(mappedBy ="idAvaliador", cascade = CascadeType.ALL)
    private List<Revisao> revisao;
 
+   @OneToMany(mappedBy ="idAvaliador", cascade = CascadeType.ALL)
+   private List<AreaDeConhecimento> areaDeConhecimento;
+
    
-    public Avaliador (){}
+    public Avaliador (){
+        revisao = new ArrayList<>();
+        areaDeConhecimento = new ArrayList<>();
+    }
 
 
     public Avaliador(String nomeCompleto, String email, String codigoAcesso){
+        this();
         this.email=email;
         this.nomeCompleto=nomeCompleto;
         this.codigoAcesso = codigoAcesso;
