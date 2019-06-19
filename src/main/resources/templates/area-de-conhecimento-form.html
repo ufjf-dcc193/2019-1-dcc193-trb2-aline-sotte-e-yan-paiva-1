@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Area de conhecimento: Nova</title>
+</head>
+
+<body>
+   <html>Area de conhecimento: Nova
+   <table>
+      <thead>
+         <tr>
+            <th>id</th>
+            <th>Titulo</th>
+            <th>Descrição</th>
+            <th>Trabalhos</th>
+            
+         </tr>
+      </thead>
+      <tbody>
+         <tr th:each="area: ${areas}" th:object=${area}>
+            <form th:action="@{lista-trabalhos.html}" method="POST">
+               <td th:text=*{id}></td>
+               <td th:text=*{titulo}></td>
+               <td th:text=*{descricaoTextual}></td>
+               <td><input type="submit"/></td>
+            </form>
+         </tr>
+      </tbody>
+   </table>
+   <form th:action="@{area-de-conhecimento-form.html(id=${param.id})}" th:object="${novaArea}" method="POST">
+      <label>Titulo: <input type="text" th:field="*{titulo}"/></label>
+      <strong th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></strong>
+      <label>Descrição <input type="text" th:field="*{descricaoTextual}"/></label>
+      <strong th:if="${#fields.hasErrors('descricaoTextual')}" th:errors="*{descricaoTextual}"></strong>
+     
+      <input type="submit"/>
+</form>
+</body>
+
+</html>

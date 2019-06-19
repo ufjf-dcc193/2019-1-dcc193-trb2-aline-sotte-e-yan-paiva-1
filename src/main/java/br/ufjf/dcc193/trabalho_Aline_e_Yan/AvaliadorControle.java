@@ -24,12 +24,14 @@ public class AvaliadorControle {
 
     @Autowired
     private AvaliadorRepositorio avalRepositorio;
+    @Autowired
+    private AreaDeConhecimentoRepositorio areaRepositorio;
 
     @RequestMapping({ "/", "/index.html" })
     public String index() {
         return "avaliador";
     }
-
+    
     @GetMapping("/novoavaliador.html")
     public ModelAndView criar() {
         ModelAndView mv = new ModelAndView();
@@ -64,12 +66,12 @@ public class AvaliadorControle {
         return mv;
     }
 
-    @GetMapping("/editar/{id}")
+    @GetMapping("/editar.html")
     public ModelAndView editar(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView();
         Avaliador aval = avalRepositorio.getOne(id);
         mv.setViewName("avaliador-form-edit");
-        mv.addObject("avaliadores", aval);
+        mv.addObject("avaliador", aval);
         return mv;
     }
     @PostMapping("/editar/{id}")

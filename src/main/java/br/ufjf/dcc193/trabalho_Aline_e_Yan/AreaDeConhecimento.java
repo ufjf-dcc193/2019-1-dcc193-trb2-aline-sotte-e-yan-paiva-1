@@ -66,4 +66,20 @@ public class AreaDeConhecimento {
     public String toString() {
         return "titulo=" + titulo + ", DescricaoTextual=" + descricaoTextual + ", id="+ id;
     }
+
+    public Trabalho getIdTrabalho() {
+        return idTrabalho;
+    }
+
+    public void setIdTrabalho(Trabalho idTrabalho) {
+        this.idTrabalho = idTrabalho;
+    }
+
+    public Avaliador getIdAvaliador() {
+        return idAvaliador;
+    }
+
+    public void setIdAvaliador(Avaliador idAvaliador) {
+        this.idAvaliador = idAvaliador;
+    }
 }
