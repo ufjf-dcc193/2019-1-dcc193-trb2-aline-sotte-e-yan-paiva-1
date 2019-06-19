@@ -10,7 +10,7 @@
             <tr> <th>id</th> <th>Nome</th> <th>Email</th> </tr>
         </thead>
         <tbody>
-            <tr th:each="avaliador: ${aval}" th:object=${avaliador}>
+            <tr th:each="avaliador: ${avaliadores}" th:object=${avaliador}>
                 <td th:text=*{id}></td>
                 <td th:text=*{nomeCompleto}></td>
                 <td th:text=*{email}></td>
